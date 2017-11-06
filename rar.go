@@ -118,3 +118,13 @@ func extract(rr *rardecode.Reader, destination string) error {
 
 	return nil
 }
+
+// Returns an error, as rar does not support uid/gid preservation
+func (rarFormat) OpenPreserve(source, destination string) error {
+	return fmt.Errorf("%s: rar does not suppor uid/gid preservation", source)
+}
+
+// Returns an error, as rar does not support uid/gid preservation
+func (rarFormat) ReadPreserve(input io.Reader, destination string) error {
+	return fmt.Errorf("%v: rar does not suppor uid/gid preservation", input)
+}
